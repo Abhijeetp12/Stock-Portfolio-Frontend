@@ -7,7 +7,7 @@ import axios from 'axios';
 import { toast } from "react-toastify";
 import { useRef } from 'react';
 
-
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 
 function Portfolio(){
 
@@ -27,7 +27,7 @@ function Portfolio(){
       console.log(editStock);
         try{
            const response = await axios.get(
-        'http://localhost:3000/portfolio', 
+        `${BACKEND_URL}/portfolio`, 
         { withCredentials: true }
       );
             if(response.status === 200){
@@ -64,7 +64,7 @@ function Portfolio(){
   async function handleDelete(stock){
     const stockId=stock.id;
     try {
-      const response = await axios.delete(`http://localhost:3000/portfolio/delete/stock/${stockId}`);
+      const response = await axios.delete(`${BACKEND_URL}/portfolio/delete/stock/${stockId}`);
       if (response.status === 200) {
         toast.success("Stock deleted successfully!");
         // Remove the deleted stock from the state
@@ -86,7 +86,7 @@ function Portfolio(){
         console.log(editStock.id);
         
         const response = await axios.put(
-          `http://localhost:3000/portfolio/update/stock/${editStock.id}`,
+          `${BACKEND_URL}/portfolio/update/stock/${editStock.id}`,
           { id:editStock.user_id , price: editPrice }, // Request body
           
         );
