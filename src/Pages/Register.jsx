@@ -8,6 +8,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from 'react-router-dom';
 import Footer from "../Components/Footer";
 
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL;
+
 function Register(){
   const navigate = useNavigate();
 
@@ -19,7 +21,7 @@ function Register(){
 
 
     function handleGoogleSignUp () {
-      window.location.href = "http://localhost:3000/auth/google"; 
+      window.location.href = "${BACKEND_URL}/auth/google"; 
     };
 
   function validateFields () {
@@ -71,7 +73,7 @@ function Register(){
     setSubmitted(true);
     try {
       const response = await axios.post(
-        'http://localhost:3000/register',
+        '${BACKEND_URL}/register',
         { email, password },
         {
           headers: {
