@@ -5,6 +5,7 @@ import axios from "axios";
 import { useState,useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
 
 function Header(){
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -14,7 +15,7 @@ function Header(){
     useEffect(() => {
         async function checkAuth() {
             try {
-                const response = await axios.get('http://localhost:3000/checkauth', { withCredentials: true });
+                const response = await axios.get(`${BACKEND_URL}/checkauth`, { withCredentials: true });
                 setIsAuthenticated(response.data.isAuthenticated);
             
             } catch (err) {
@@ -30,7 +31,7 @@ function Header(){
     async function handleLogOut() {
         try{
             console.log("attempt to logout");
-         const response=await axios.post('http://localhost:3000/logout',
+         const response=await axios.post(`${BACKEND_URL}/logout`,
             {},{ withCredentials: true } 
         );
         if(response.status === 200){
