@@ -21,7 +21,7 @@ function Register(){
 
 
     function handleGoogleSignUp () {
-      window.location.href = "${BACKEND_URL}/auth/google"; 
+      window.location.href = `${BACKEND_URL}/auth/google`; 
     };
 
   function validateFields () {
@@ -73,7 +73,7 @@ function Register(){
     setSubmitted(true);
     try {
       const response = await axios.post(
-        '${BACKEND_URL}/register',
+        `${BACKEND_URL}/register`,
         { email, password },
         {
           headers: {
