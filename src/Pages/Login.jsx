@@ -9,12 +9,15 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import googleicon from "../assets/Google-icon.svg";
 
+
+const BACKEND_URL=import.meta.env.VITE_BACKEND_URL;
+
 function Login() {
 
   
 
   function handleGoogleSignIn () {
-    window.location.href = "http://localhost:3000/auth/google"; 
+    window.location.href = `{BACKEND_URL}/auth/google`; 
   };
 
   const navigate = useNavigate();
@@ -33,7 +36,7 @@ function Login() {
       }
       
       const response = await axios.post(
-        'http://localhost:3000/login',
+        `${BACKEND_URL}/login`,
         { email, password },
         {
           headers: {
@@ -45,7 +48,7 @@ function Login() {
       if (response.status === 200) {
         toast.success("Login successful.");
         // Check authentication status
-        const authResponse = await axios.get("http://localhost:3000/checkauth", {
+        const authResponse = await axios.get(`${BACKEND_URL}:3000/checkauth`, {
             withCredentials: true,
         });
         console.log("Auth Response:", authResponse.data); 
