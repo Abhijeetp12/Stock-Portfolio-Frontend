@@ -48,7 +48,7 @@ function Login() {
       if (response.status === 200) {
         toast.success("Login successful.");
         // Check authentication status
-        const authResponse = await axios.get(`${BACKEND_URL}:3000/checkauth`, {
+        const authResponse = await axios.get(`${BACKEND_URL}/checkauth`, {
             withCredentials: true,
         });
         console.log("Auth Response:", authResponse.data); 
