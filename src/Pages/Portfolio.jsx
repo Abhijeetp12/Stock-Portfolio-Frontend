@@ -120,7 +120,7 @@ function Portfolio(){
   
   try {
     const response = await axios.post(
-      "http://localhost:3000/portfolio/stock",
+      `${BACKEND_URL}/portfolio/stock`,
       { StockName},
       { withCredentials: true }
     );
